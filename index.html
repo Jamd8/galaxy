@@ -6,34 +6,72 @@
 <title>Manga Galaxy</title>
 
 <style>
+/* =========================
+   MODO OSCURO (DEFAULT)
+========================= */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #0f172a;
     color: white;
+    transition: 0.3s;
 }
 
-/* HEADER PRO */
+/* MODO CLARO */
+body.light {
+    background: #f1f5f9;
+    color: black;
+}
+
+/* HEADER */
 header {
     background: #020617;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
-    letter-spacing: 1px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
 }
 
-/* CONTENEDOR TIPO GRID PRO */
+/* HEADER EN MODO CLARO */
+body.light header {
+    background: #e2e8f0;
+}
+
+/* BUSCADOR */
+#search {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    margin: 15px auto;
+    display: block;
+}
+
+/* BOTÓN MODO */
+#toggleMode {
+    display: block;
+    margin: 10px auto;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #22c55e;
+    font-weight: bold;
+}
+
+/* CONTENEDOR */
 .container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 25px;
-    padding: 30px;
+    gap: 20px;
+    padding: 20px;
 }
 
-/* TARJETA PRO */
+/* TARJETA MANGA */
 .manga {
     background: #1e293b;
     border-radius: 15px;
@@ -43,11 +81,15 @@ header {
     box-shadow: 0 10px 20px rgba(0,0,0,0.4);
 }
 
+body.light .manga {
+    background: #ffffff;
+}
+
 .manga:hover {
     transform: translateY(-8px);
 }
 
-/* IMAGEN PERFECTA */
+/* IMAGEN */
 .manga img {
     width: 100%;
     height: 300px;
@@ -61,7 +103,7 @@ header {
     font-size: 16px;
 }
 
-/* BOTÓN PRO */
+/* BOTÓN */
 button {
     width: 100%;
     border: none;
@@ -77,7 +119,7 @@ button:hover {
     background: #16a34a !important;
 }
 
-/* VISOR (LO DEJAMOS OCULTO) */
+/* VISOR (OCULTO) */
 .reader {
     display: none;
     text-align: center;
@@ -96,25 +138,56 @@ button:hover {
 
 <header>📚 Manga Galaxy</header>
 
+<!-- BOTÓN MODO OSCURO/CLARO -->
+<button id="toggleMode">🌙 Cambiar modo</button>
+
+<!-- BUSCADOR -->
+<input type="text" id="search" placeholder="🔍 Buscar manga...">
+
 <div class="container">
 
     <div class="manga">
         <h2>Sword Art Online</h2>
         <img src="https://proassetspdlcom.cdnstatics2.com/usuaris/libros/fotos/204/original/portada_sword-art-online-aincrad-n-0102_reki-kawahara_201603291554.jpg">
-        <button onclick="location.href='manga1.html'">
-            Ver Manga
-        </button>
+        <button onclick="location.href='manga1.html'">Ver Manga</button>
     </div>
 
     <div class="manga">
         <h2>Witch Hat Atelier</h2>
         <img src="https://m.media-amazon.com/images/I/91Uux8bBTLL.jpg">
-        <button onclick="location.href='manga2.html'">
-            Ver Manga
-        </button>
+        <button onclick="location.href='manga2.html'">Ver Manga</button>
     </div>
 
 </div>
+
+<script>
+
+/* =========================
+   BUSCADOR EN TIEMPO REAL
+========================= */
+const search = document.getElementById("search");
+const mangas = document.querySelectorAll(".manga");
+
+search.addEventListener("input", function() {
+    let value = this.value.toLowerCase();
+
+    mangas.forEach(manga => {
+        let title = manga.querySelector("h2").innerText.toLowerCase();
+
+        manga.style.display = title.includes(value) ? "block" : "none";
+    });
+});
+
+/* =========================
+   MODO OSCURO / CLARO
+========================= */
+const btn = document.getElementById("toggleMode");
+
+btn.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+});
+
+</script>
 
 </body>
 </html>
