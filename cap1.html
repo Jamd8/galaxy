@@ -8,23 +8,71 @@
 body {
     background: black;
     margin: 0;
+    font-family: Arial, sans-serif;
 }
 
+/* Lector de manga */
 img {
     width: 100%;
     max-width: 800px;
     display: block;
     margin: 0 auto 5px auto;
 }
+
+/* Navegación */
+.navegacion {
+    text-align: center;
+    margin: 25px 0;
+}
+
+/* Botones PRO */
+.btn {
+    display: inline-block;
+    background: #22c55e;
+    color: black;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #16a34a;
+    transform: scale(1.05);
+}
+
+/* Botón anterior diferente */
+.btn.secondary {
+    background: #334155;
+    color: white;
+}
+
+.btn.secondary:hover {
+    background: #475569;
+}
 </style>
 </head>
 
 <body>
 
+<!-- PÁGINAS DEL MANGA -->
 <img src="https://i.imgur.com/ByGwevS.jpeg">
 <img src="https://i.imgur.com/Kl7XN2a.jpeg">
 <img src="https://i.imgur.com/O5NUNer.jpeg">
 <img src="https://i.imgur.com/qXuoKmw.jpeg">
+
+<!-- NAVEGACIÓN -->
+<div class="navegacion">
+
+    <a href="index.html" class="btn secondary">🏠 Índice</a>
+
+    <a href="cap1.html" class="btn secondary">⬅️ Anterior</a>
+
+    <a href="cap2.html" class="btn">Siguiente ➡️</a>
+
+</div>
 
 </body>
 </html>
