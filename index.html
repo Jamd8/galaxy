@@ -13,55 +13,71 @@ body {
     color: white;
 }
 
+/* HEADER PRO */
 header {
     background: #020617;
-    padding: 15px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.container {
     padding: 20px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
 }
 
+/* CONTENEDOR TIPO GRID PRO */
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 30px;
+}
+
+/* TARJETA PRO */
 .manga {
     background: #1e293b;
     border-radius: 15px;
-    padding: 15px;
-    margin: 20px;
-    display: incline-block;
     width: 220px;
-    vertical-align: top;
+    overflow: hidden;
     transition: 0.3s;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
 }
 
 .manga:hover {
-    transform: scale(1.02);
+    transform: translateY(-8px);
 }
 
+/* IMAGEN PERFECTA */
 .manga img {
-    width: 200px;
+    width: 100%;
     height: 300px;
     object-fit: cover;
-    border-radius: 10px;
+    display: block;
 }
 
+/* TÍTULO */
+.manga h2 {
+    margin: 10px;
+    font-size: 16px;
+}
+
+/* BOTÓN PRO */
 button {
-    background: #22c55e;
+    width: 100%;
     border: none;
-    padding: 10px;
-    width: 200px;
-    border-radius: 10px;
+    padding: 12px;
+    background: #22c55e;
     color: black;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-    button:hover {
-        background: #FFADEB !important;
+    transition: 0.3s;
 }
 
+button:hover {
+    background: #16a34a !important;
+}
+
+/* VISOR (LO DEJAMOS OCULTO) */
 .reader {
     display: none;
     text-align: center;
@@ -70,15 +86,9 @@ button {
 .reader img {
     width: 100%;
     max-width: 800px;
-    margin-bottom: 10px;
+    display: block;
+    margin: 0 auto 10px auto;
 }
-    .container {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        
-}
-    
 </style>
 </head>
 
@@ -90,35 +100,21 @@ button {
 
     <div class="manga">
         <h2>Sword Art Online</h2>
-        <img src="https://proassetspdlcom.cdnstatics2.com/usuaris/libros/fotos/204/original/portada_sword-art-online-aincrad-n-0102_reki-kawahara_201603291554.jpg" alt="">
+        <img src="https://proassetspdlcom.cdnstatics2.com/usuaris/libros/fotos/204/original/portada_sword-art-online-aincrad-n-0102_reki-kawahara_201603291554.jpg">
         <button onclick="location.href='manga1.html'">
-Ver Manga
-</button>
+            Ver Manga
+        </button>
     </div>
 
     <div class="manga">
-    <h2>Witch Hat Atelier</h2>
-    <img src="https://m.media-amazon.com/images/I/91Uux8bBTLL.jpg">
-    <button onclick="location.href='manga2.html'">
-        Ver Manga
-    </button>
-    </div>
-    
-    <div class="reader" id="reader">
-        <h2>Capítulo 1</h2>
-        <img src="https://via.placeholder.com/800x1200">
-        <img src="https://via.placeholder.com/800x1200">
-        <img src="https://via.placeholder.com/800x1200">
+        <h2>Witch Hat Atelier</h2>
+        <img src="https://m.media-amazon.com/images/I/91Uux8bBTLL.jpg">
+        <button onclick="location.href='manga2.html'">
+            Ver Manga
+        </button>
     </div>
 
 </div>
-
-<script>
-function leer() {
-    document.getElementById("reader").style.display = "block";
-    window.scrollTo(0, document.body.scrollHeight);
-}
-</script>
 
 </body>
 </html>
