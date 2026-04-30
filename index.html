@@ -6,14 +6,23 @@
 <title>Manga Galaxy</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background: #0b0f19;
     color: white;
+    transition: 0.3s;
 }
 
-/* TOP BAR estilo MangaDex */
+/* 🌞 MODO CLARO */
+body.light {
+    background: #f1f5f9;
+    color: black;
+}
+
+/* TOP BAR */
 .topbar {
     background: #111827;
     padding: 15px;
@@ -22,11 +31,17 @@ body {
     align-items: center;
     position: sticky;
     top: 0;
+    transition: 0.3s;
 }
 
+body.light .topbar {
+    background: #e2e8f0;
+}
+
+/* LOGO */
 .logo {
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 /* BUSCADOR */
@@ -34,11 +49,58 @@ body {
     width: 250px;
     padding: 8px;
     border-radius: 8px;
-    border: none;
+    border: 2px solid transparent;
     outline: none;
+    transition: 0.3s;
 }
 
-/* CONTENIDO */
+/* 🔴 borde rojo al click */
+#search:focus {
+    border: 2px solid #ef4444;
+}
+
+/* SWITCH JOYSTICK */
+.switch {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    margin-left: 10px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: #334155;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+input:checked + .slider {
+    background: #22c55e;
+}
+
+input:checked + .slider::before {
+    transform: translateX(24px);
+}
+
+/* CONTENEDOR */
 .container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -46,7 +108,7 @@ body {
     padding: 20px;
 }
 
-/* CARD MANGA */
+/* CARD */
 .manga {
     background: #1f2937;
     border-radius: 12px;
@@ -55,23 +117,28 @@ body {
     border: 1px solid transparent;
 }
 
+body.light .manga {
+    background: white;
+}
+
 .manga:hover {
     transform: translateY(-6px);
     border: 1px solid #ef4444;
     box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
 }
 
-/* PORTADA */
+/* IMAGEN */
 .manga img {
     width: 100%;
     height: 260px;
     object-fit: cover;
 }
 
-/* INFO */
+/* TITULO PRO */
 .manga h3 {
     margin: 8px;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 700;
 }
 
 /* BOTÓN */
@@ -88,25 +155,6 @@ body {
     background: #16a34a;
 }
 
-/* FILTROS (tipo MangaDex) */
-.filters {
-    padding: 10px 20px;
-    display: flex;
-    gap: 10px;
-}
-
-.filter-btn {
-    padding: 6px 10px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    background: #334155;
-    color: white;
-}
-
-.filter-btn:hover {
-    background: #475569;
-}
 </style>
 </head>
 
@@ -114,8 +162,17 @@ body {
 
 <!-- TOP BAR -->
 <div class="topbar">
+
     <div class="logo">📚 Manga Library</div>
+
     <input type="text" id="search" placeholder="🔍 Buscar manga...">
+
+    <!-- SWITCH JOYSTICK -->
+    <label class="switch">
+        <input type="checkbox" id="toggleMode">
+        <span class="slider"></span>
+    </label>
+
 </div>
 
 <!-- CATÁLOGO -->
@@ -137,9 +194,7 @@ body {
 
 <script>
 
-/* =========================
-   BUSCADOR
-========================= */
+/* 🔍 BUSCADOR */
 const search = document.getElementById("search");
 const mangas = document.querySelectorAll(".manga");
 
@@ -150,6 +205,13 @@ search.addEventListener("input", () => {
         let title = m.querySelector("h3").innerText.toLowerCase();
         m.style.display = title.includes(value) ? "block" : "none";
     });
+});
+
+/* 🌙 MODO JOYSTICK */
+const toggle = document.getElementById("toggleMode");
+
+toggle.addEventListener("change", () => {
+    document.body.classList.toggle("light");
 });
 
 </script>
